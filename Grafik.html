@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUMATH</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href https://pro.fontawesome.com/releases/v5.18.0/css/all.css" integrity="sha384-AYMEC3YwScVb3ZcuHt0A93w35dYTsvhLPVnYs9e5tHfG3vDvKxVFELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">KUMATH</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse text-right" id="navbarText">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="KUMATH.html">Beranda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="materi.html">Materi</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Latihan.html">Latihan Soal</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="grafik.html">Membuat Grafik</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="tentang.html">Tentang Kami</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid materi pt-8 pb-5">
+        <div class="container text-left">
+      <h1 >Membuat Grafik Parabola Kuadrat</h1>
+
+      <label for="a">a :</label>
+      <input type="text" id="a" placeholder="Masukkan nilai a" required>
+  
+      <label for="b">b:</label>
+      <input type="text" id="b" placeholder="Masukkan nilai b" required>
+  
+      <label for="c">c:</label>
+      <input type="text" id="c" placeholder="Masukkan nilai c" required>
+  
+      <button onclick="updatePlot()">Enter</button>
+  
+      <div id="plot"></div>
+  
+      <script>
+          // Function to update the plot
+          function updatePlot() {
+              // Get values of a, b, and c from the input fields
+              var a = parseFloat(document.getElementById("a").value);
+              var b = parseFloat(document.getElementById("b").value);
+              var c = parseFloat(document.getElementById("c").value);
+  
+              // Generate x values
+              var xValues = [];
+              for (var i = -10; i <= 10; i += 0.1) {
+                  xValues.push(i);
+              }
+  
+              // Calculate y values
+              var yValues = xValues.map(function(x) {
+                  return a * x * x + b * x + c;
+              });
+  
+              // Create the plot
+              var trace = {
+                  x: xValues,
+                  y: yValues,
+                  type: 'scatter',
+                  mode: 'lines',
+                  name: 'Quadratic Function'
+              };
+  
+              var layout = {
+                  title: `Quadratic Function: ${a}x^2 + ${b}x + ${c}`,
+                  xaxis: {
+                      title: 'x'
+                  },
+                  yaxis: {
+                      title: 'y'
+                  }
+              };
+  
+              Plotly.newPlot('plot', [trace], layout);
+          }
+      </script>
+  
+  </body>
+</html>
